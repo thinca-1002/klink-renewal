@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>カルトナージュ教室K*link | 福岡北九州</title>
+<meta name="description" content="福岡北九州のカルトナージュ教室です。キットで作れる手軽なものからディプロマまで様々なハンドメイドをお楽しみいただけます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS Custom Properties
+   ============================================ */
+:root {
+  --color-bg: #FAF8F5;
+  --color-bg-sub: #F0EBE3;
+  --color-text: #3E3232;
+  --color-text-light: #6B5E5E;
+  --color-accent: #C4A4A7;
+  --color-gold: #B8965A;
+  --color-gold-hover: #A6844E;
+  --color-footer-bg: #3E3232;
+  --color-footer-text: #F0EBE3;
+  --color-white: #FFFFFF;
+
+  --font-en: 'Cormorant Garamond', serif;
+  --font-jp: 'Noto Serif JP', serif;
+
+  --container-max: 1100px;
+  --section-padding: 6rem 1.5rem;
+  --section-padding-mobile: 4rem 1.25rem;
+
+  --transition-base: 0.3s ease;
+  --shadow-card: 0 2px 20px rgba(62, 50, 50, 0.06);
+  --shadow-card-hover: 0 8px 32px rgba(62, 50, 50, 0.12);
+  --radius-card: 8px;
+}
+
+/* ============================================
+   Reset & Base
+   ============================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-jp);
+  font-weight: 300;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ============================================
+   Utility
+   ============================================ */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section-title {
+  font-family: var(--font-en);
+  font-weight: 300;
+  font-size: 2.5rem;
+  letter-spacing: 0.12em;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--color-text);
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-accent);
+  margin: 1rem auto 0;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 1.5rem;
+  transition: background-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.nav.is-scrolled {
+  background-color: rgba(250, 248, 245, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 12px rgba(62, 50, 50, 0.06);
+}
+
+.nav__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.nav__logo {
+  font-family: var(--font-en);
+  font-weight: 300;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text);
+}
+
+.nav__logo span {
+  color: var(--color-accent);
+}
+
+.nav__links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav__links a {
+  font-family: var(--font-en);
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text);
+  position: relative;
+  transition: color var(--transition-base);
+}
+
+.nav__links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width var(--transition-base);
+}
+
+.nav__links a:hover::after {
+  width: 100%;
+}
+
+.nav__links a:hover {
+  color: var(--color-accent);
+}
+
+/* Hamburger */
+.nav__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  gap: 6px;
+  padding: 0;
+}
+
+.nav__hamburger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background-color: var(--color-text);
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+.nav__hamburger.is-open span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.nav__hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav__hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* Mobile menu overlay */
+.nav__mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(250, 248, 245, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.nav__mobile-menu.is-open {
+  display: flex;
+}
+
+.nav__mobile-menu a {
+  font-family: var(--font-en);
+  font-weight: 400;
+  font-size: 1.25rem;
+  letter-spacing: 0.12em;
+  color: var(--color-text);
+  transition: color var(--transition-base);
+}
+
+.nav__mobile-menu a:hover {
+  color: var(--color-accent);
+}
+
+/* ============================================
+   Hero
+   ============================================ */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background-color: var(--color-bg-sub);
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, rgba(245, 240, 235, 0.82) 0%, rgba(250, 248, 245, 0.78) 40%, rgba(240, 235, 227, 0.85) 100%),
+    url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1400&q=80');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+/* Decorative curves */
+.hero__bg::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60%;
+  height: 140%;
+  border-radius: 50%;
+  border: 1px solid rgba(196, 164, 167, 0.2);
+  z-index: 0;
+}
+
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -15%;
+  width: 50%;
+  height: 120%;
+  border-radius: 50%;
+  border: 1px solid rgba(184, 150, 90, 0.12);
+  z-index: 0;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 0 1.5rem;
+}
+
+.hero__label {
+  font-family: var(--font-jp);
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.3em;
+  margin-bottom: 0.8rem;
+  color: var(--color-text);
+  opacity: 0.8;
+}
+
+.hero__title {
+  font-family: var(--font-en);
+  font-weight: 300;
+  font-size: 3.5rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 2rem;
+  color: var(--color-text);
+}
+
+.hero__title span {
+  color: var(--color-accent);
+}
+
+.hero__subtitle {
+  font-family: var(--font-jp);
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 2.2;
+  color: var(--color-text-light);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.hero__scroll span {
+  display: block;
+  font-family: var(--font-en);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--color-text-light);
+  margin-bottom: 0.5rem;
+}
+
+.hero__scroll::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 40px;
+  background-color: var(--color-accent);
+  margin: 0 auto;
+  animation: scrollLine 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+  50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+  51% { transform-origin: bottom; }
+  100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ============================================
+   Cartonnage & Gallery
+   ============================================ */
+.cartonnage {
+  padding: var(--section-padding);
+  background-color: var(--color-bg);
+}
+
+.cartonnage__statement {
+  font-family: var(--font-jp);
+  font-weight: 300;
+  font-size: 1.15rem;
+  line-height: 2.4;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+  color: var(--color-text);
+  letter-spacing: 0.04em;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.gallery__item {
+  aspect-ratio: 1;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: rgba(62, 50, 50, 0.3);
+}
+
+.gallery__item:nth-child(1) .gallery__placeholder {
+  background: linear-gradient(135deg, #E8DDD5 0%, #D4C5B9 100%);
+}
+.gallery__item:nth-child(2) .gallery__placeholder {
+  background: linear-gradient(135deg, #DCD2CA 0%, #C9BBB0 100%);
+}
+.gallery__item:nth-child(3) .gallery__placeholder {
+  background: linear-gradient(135deg, #E0D5CE 0%, #CFC0B5 100%);
+}
+.gallery__item:nth-child(4) .gallery__placeholder {
+  background: linear-gradient(135deg, #D8CEC6 0%, #C5B8AD 100%);
+}
+.gallery__item:nth-child(5) .gallery__placeholder {
+  background: linear-gradient(135deg, #E3D9D1 0%, #D0C3B8 100%);
+}
+.gallery__item:nth-child(6) .gallery__placeholder {
+  background: linear-gradient(135deg, #DDD3CB 0%, #CABDB2 100%);
+}
+
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.gallery__item:hover .gallery__img {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   Lesson
+   ============================================ */
+.lesson {
+  padding: var(--section-padding);
+  background-color: var(--color-bg-sub);
+}
+
+.lesson__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.lesson__card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-card);
+  padding: 0;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  cursor: default;
+  overflow: hidden;
+}
+
+.lesson__card-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.lesson__card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.lesson__card:hover .lesson__card-img img {
+  transform: scale(1.05);
+}
+
+.lesson__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.lesson__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin: 1.5rem auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lesson__card:nth-child(1) .lesson__icon { background: linear-gradient(135deg, #E8DDD5, #D4C5B9); }
+.lesson__card:nth-child(2) .lesson__icon { background: linear-gradient(135deg, #D8CEC6, #CABDB2); }
+.lesson__card:nth-child(3) .lesson__icon { background: linear-gradient(135deg, #E0D5CE, #CFC0B5); }
+.lesson__card:nth-child(4) .lesson__icon { background: linear-gradient(135deg, #DCD2CA, #C9BBB0); }
+.lesson__card:nth-child(5) .lesson__icon { background: linear-gradient(135deg, #E3D9D1, #D0C3B8); }
+.lesson__card:nth-child(6) .lesson__icon { background: linear-gradient(135deg, #DDD3CB, #C5B8AD); }
+
+.lesson__icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--color-text-light);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.lesson__name {
+  font-family: var(--font-jp);
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  color: var(--color-text);
+  padding-bottom: 1.5rem;
+}
+
+/* ============================================
+   Profile
+   ============================================ */
+.profile {
+  padding: var(--section-padding);
+  background-color: var(--color-bg);
+}
+
+.profile__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.profile__photo {
+  aspect-ratio: 4 / 5;
+  border-radius: 200px 200px 8px 8px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #E3D9D1 0%, #D0C3B8 50%, #C4A4A7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile__photo-placeholder {
+  font-family: var(--font-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: rgba(62, 50, 50, 0.3);
+}
+
+.profile__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile__heading {
+  font-family: var(--font-en);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  color: var(--color-text);
+}
+
+.profile__heading span {
+  color: var(--color-accent);
+}
+
+.profile__text {
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 2.2;
+  color: var(--color-text-light);
+}
+
+/* ============================================
+   Kit Shop
+   ============================================ */
+.kitshop {
+  padding: 5rem 1.5rem;
+  background:
+    linear-gradient(160deg, rgba(242, 237, 231, 0.88) 0%, rgba(232, 221, 213, 0.9) 100%),
+    url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&q=80');
+  background-size: cover;
+  background-position: center bottom;
+  position: relative;
+  overflow: hidden;
+}
+
+.kitshop::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 60%;
+  height: 180%;
+  border-radius: 50%;
+  border: 1px solid rgba(196, 164, 167, 0.15);
+}
+
+.kitshop__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.kitshop .section-title {
+  margin-bottom: 1.5rem;
+}
+
+.kitshop__desc {
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.04em;
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  padding: 1rem 3rem;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  background: transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+.btn:hover {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+}
+
+/* ============================================
+   Contact
+   ============================================ */
+.contact {
+  padding: var(--section-padding);
+  background-color: var(--color-bg);
+}
+
+.contact__form {
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form__label {
+  font-family: var(--font-en);
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text-light);
+}
+
+.form__input,
+.form__textarea {
+  font-family: var(--font-jp);
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background-color: var(--color-bg-sub);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  outline: none;
+  transition: border-color var(--transition-base);
+}
+
+.form__input:focus,
+.form__textarea:focus {
+  border-color: var(--color-accent);
+}
+
+.form__textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+.contact__submit {
+  align-self: center;
+  margin-top: 1rem;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.footer {
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  padding: 3rem 1.5rem 2rem;
+}
+
+.footer__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer__links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer__links a {
+  font-family: var(--font-en);
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--color-footer-text);
+  opacity: 0.7;
+  transition: opacity var(--transition-base);
+}
+
+.footer__links a:hover {
+  opacity: 1;
+}
+
+.footer__copyright {
+  font-family: var(--font-en);
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  opacity: 0.5;
+}
+
+/* ============================================
+   Responsive: Tablet (768px)
+   ============================================ */
+@media (max-width: 768px) {
+  .nav__links {
+    display: none;
+  }
+
+  .nav__hamburger {
+    display: flex;
+  }
+
+  .hero__title {
+    font-size: 2.5rem;
+  }
+
+  .hero__subtitle {
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .cartonnage__statement {
+    font-size: 1rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lesson__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profile__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .profile__photo {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .footer__links {
+    gap: 1rem;
+  }
+}
+
+/* ============================================
+   Responsive: Mobile (480px)
+   ============================================ */
+@media (max-width: 480px) {
+  :root {
+    --section-padding: 4rem 1.25rem;
+  }
+
+  .hero__title {
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero__subtitle {
+    font-size: 0.85rem;
+    line-height: 2;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cartonnage__statement {
+    font-size: 0.9rem;
+    line-height: 2.2;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .lesson__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .lesson__card {
+    padding: 2rem 1.25rem;
+  }
+
+  .profile__heading {
+    font-size: 1.6rem;
+  }
+
+  .profile__text {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 0.875rem 2.5rem;
+    font-size: 0.85rem;
+  }
+
+  .footer__links {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#hero" class="nav__logo">K<span>*</span>link</a>
+    <ul class="nav__links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#cartonnage">Cartonnage&amp;Gallery</a></li>
+      <li><a href="#lesson">Lesson</a></li>
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#kitshop">Kit Shop</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav__hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav__mobile-menu" id="mobileMenu" role="navigation" aria-label="モバイルメニュー">
+  <a href="#hero">Home</a>
+  <a href="#cartonnage">Cartonnage&amp;Gallery</a>
+  <a href="#lesson">Lesson</a>
+  <a href="#profile">Profile</a>
+  <a href="#kitshop">Kit Shop</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__content">
+    <p class="hero__label">カルトナージュ教室</p>
+    <h1 class="hero__title">K<span>*</span>link</h1>
+    <p class="hero__subtitle">福岡北九州のカルトナージュ教室です。キットで作れる手軽なものからディプロマまで様々なハンドメイドをお楽しみいただけます。</p>
+  </div>
+  <div class="hero__scroll">
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ===== Cartonnage & Gallery ===== -->
+<section class="cartonnage" id="cartonnage">
+  <div class="container">
+    <h2 class="section-title fade-in">Cartonnage &amp; Gallery</h2>
+    <p class="cartonnage__statement fade-in">好きなものに囲まれた日常。作るのを楽しみ、使って楽しむ。時には誰かのために思いを込めて…ワクワクする時間をカルトナージュで、はじめませんか？</p>
+    <!-- TODO: クライアントの実際の作品写真に差し替え（現在はサンプル画像） -->
+    <div class="gallery fade-in">
+      <div class="gallery__item">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" alt="布で装飾されたハンドメイドの箱" class="gallery__img" loading="lazy">
+      </div>
+      <div class="gallery__item">
+        <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&q=80" alt="エレガントな布地のクローズアップ" class="gallery__img" loading="lazy">
+      </div>
+      <div class="gallery__item">
+        <img src="https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=600&q=80" alt="美しいテキスタイルと手工芸の道具" class="gallery__img" loading="lazy">
+      </div>
+      <div class="gallery__item">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80" alt="上品なインテリア小物" class="gallery__img" loading="lazy">
+      </div>
+      <div class="gallery__item">
+        <img src="https://images.unsplash.com/photo-1584727638753-d93e2b5e7cd1?w=600&q=80" alt="リボンと装飾素材" class="gallery__img" loading="lazy">
+      </div>
+      <div class="gallery__item">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="ハンドメイド作品のディスプレイ" class="gallery__img" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Lesson ===== -->
+<section class="lesson" id="lesson">
+  <div class="container">
+    <h2 class="section-title fade-in">Lesson</h2>
+    <!-- TODO: 各レッスンの画像はサンプル。実際のレッスン写真に差し替え -->
+    <div class="lesson__grid">
+      <div class="lesson__card fade-in">
+        <div class="lesson__card-img">
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=80" alt="メゾンデコールのイメージ" loading="lazy">
+        </div>
+        <div class="lesson__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <p class="lesson__name">ウォーグフレンチ<br>メゾンデコール</p>
+      </div>
+      <div class="lesson__card fade-in">
+        <div class="lesson__card-img">
+          <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&q=80" alt="モードバッグのイメージ" loading="lazy">
+        </div>
+        <div class="lesson__icon">
+          <svg viewBox="0 0 24 24"><path d="M20 7h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM10 4h4v3h-4V4z"/></svg>
+        </div>
+        <p class="lesson__name">CHIC FLIC FIL<br>MODE BAG</p>
+      </div>
+      <div class="lesson__card fade-in">
+        <div class="lesson__card-img">
+          <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80" alt="パスマントリーのイメージ" loading="lazy">
+        </div>
+        <div class="lesson__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <p class="lesson__name">APJパスマントリー</p>
+      </div>
+      <div class="lesson__card fade-in">
+        <div class="lesson__card-img">
+          <img src="https://images.unsplash.com/photo-1602928321679-560bb453f190?w=400&q=80" alt="ルルベちゃんのイメージ" loading="lazy">
+        </div>
+        <div class="lesson__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z"/></svg>
+        </div>
+        <p class="lesson__name">ルルベちゃん</p>
+      </div>
+      <div class="lesson__card fade-in">
+        <div class="lesson__card-img">
+          <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&q=80" alt="アロマフレグランスストーンのイメージ" loading="lazy">
+        </div>
+        <div class="lesson__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <p class="lesson__name">AFSアロマ<br>フレグランスストーン</p>
+      </div>
+      <div class="lesson__card fade-in">
+        <div class="lesson__card-img">
+          <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&q=80" alt="アルコールインクアートのイメージ" loading="lazy">
+        </div>
+        <div class="lesson__icon">
+          <svg viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <p class="lesson__name">アルコールインクアート</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Profile ===== -->
+<section class="profile" id="profile">
+  <div class="container">
+    <div class="profile__inner">
+      <div class="profile__photo fade-in">
+        <!-- TODO: クライアントから実際の講師写真を受領後に差し替え -->
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=80" alt="講師プロフィール写真（サンプル）" class="profile__img" loading="lazy">
+      </div>
+      <div class="profile__body fade-in">
+        <h2 class="profile__heading">Welcome to K<span>*</span>link</h2>
+        <p class="profile__text">はじめまして。K*linkの岩嶋佳です。カルトナージュ講師になって、16年。手軽に作れる小物から、自宅のDIYまで、とにかく、ものづくりが大好きです。ハンドメイドが好きな皆さんと、楽しい時間を共有したいと思っています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Kit Shop ===== -->
+<section class="kitshop" id="kitshop">
+  <div class="kitshop__inner">
+    <h2 class="section-title fade-in">Kit Shop</h2>
+    <p class="kitshop__desc fade-in">ご自宅でもお楽しみいただけるキットをご用意しています</p>
+    <a href="https://klink.stores.jp" target="_blank" rel="noopener noreferrer" class="btn fade-in">Kit Shop を見る</a>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="contact" id="contact">
+  <div class="container">
+    <h2 class="section-title fade-in">Contact</h2>
+    <form class="contact__form fade-in" action="#" method="post">
+      <div class="form__group">
+        <label class="form__label" for="name">Name</label>
+        <input class="form__input" type="text" id="name" name="name" required autocomplete="name" placeholder="お名前">
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="email">Email</label>
+        <input class="form__input" type="email" id="email" name="email" required autocomplete="email" placeholder="メールアドレス">
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="message">Message</label>
+        <textarea class="form__textarea" id="message" name="message" required placeholder="メッセージをご記入ください"></textarea>
+      </div>
+      <!-- TODO: フォーム送信先をクライアントに確認のうえ設定 -->
+      <button type="submit" class="btn contact__submit">送信する</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="footer__inner">
+    <ul class="footer__links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#cartonnage">Cartonnage&amp;Gallery</a></li>
+      <li><a href="#lesson">Lesson</a></li>
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#kitshop">Kit Shop</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <p class="footer__copyright">&copy; 2026 K*link. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================
+   Navigation: Scroll effect
+   ============================================ */
+(function() {
+  const nav = document.getElementById('nav');
+  let ticking = false;
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        if (window.scrollY > 60) {
+          nav.classList.add('is-scrolled');
+        } else {
+          nav.classList.remove('is-scrolled');
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
+
+/* ============================================
+   Hamburger Menu
+   ============================================ */
+(function() {
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuLinks = mobileMenu.querySelectorAll('a');
+
+  function toggleMenu() {
+    const isOpen = hamburger.classList.toggle('is-open');
+    mobileMenu.classList.toggle('is-open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+
+  menuLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (mobileMenu.classList.contains('is-open')) {
+        toggleMenu();
+      }
+    });
+  });
+})();
+
+/* ============================================
+   Scroll Fade-in (IntersectionObserver)
+   ============================================ */
+(function() {
+  var elements = document.querySelectorAll('.fade-in');
+
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    elements.forEach(function(el) {
+      observer.observe(el);
+    });
+  } else {
+    // Fallback: show all immediately
+    elements.forEach(function(el) {
+      el.classList.add('is-visible');
+    });
+  }
+})();
+
+/* ============================================
+   Smooth scroll for anchor links
+   ============================================ */
+(function() {
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        var offset = 72; // nav height
+        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
